@@ -1,3 +1,4 @@
+require 'open3'
 
 class HTMLAcceptanceResult
   attr_accessor :resource, :html, :exceptions
