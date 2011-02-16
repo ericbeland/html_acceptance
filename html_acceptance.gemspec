@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "html_acceptance.gemspec",
     "lib/.rake",
     "lib/html_acceptance.rb",
     "lib/html_acceptance/html_acceptance_result.rb",
