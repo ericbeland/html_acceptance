@@ -15,14 +15,15 @@ Jeweler::Tasks.new do |gem|
   gem.name = "html_acceptance"
   gem.homepage = "http://github.com/ericbeland/html_acceptance"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Wrapper for HTMLTidy that lets you accept warnings/errors}
+  gem.description = %Q{HTML Acceptance lets you accept warnings/errors.  Less noisey validation will hopefully let you build html validation into your test suite, but break the rules if you must.}
   gem.email = "ebeland@testomatix.com"
   gem.authors = ["Eric Beland"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
   #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.requirements << 'HTML Tidy on the command PATH or at /usr/bin/tidy'
 end
 Jeweler::RubygemsDotOrgTasks.new
 

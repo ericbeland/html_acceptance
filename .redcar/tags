@@ -1,0 +1,9 @@
+1297880139
+HTMLAcceptance	/Users/ebeland/src/html_acceptance/lib/html_acceptance.rb	class HTMLAcceptance
+bad_html	/Users/ebeland/src/html_acceptance/spec/html_acceptance_spec.rb	  def bad_html
+each_exception	/Users/ebeland/src/html_acceptance/lib/html_acceptance.rb	  def each_exception
+filenameize	/Users/ebeland/src/html_acceptance/lib/html_acceptance.rb	  def filenameize(path)
+good_html	/Users/ebeland/src/html_acceptance/spec/html_acceptance_spec.rb	  def good_html
+initialize	/Users/ebeland/src/html_acceptance/lib/html_acceptance.rb	  def initialize(data_folder, options={})
+tmp_path	/Users/ebeland/src/html_acceptance/spec/html_acceptance_spec.rb	  def tmp_path
+validator	/Users/ebeland/src/html_acceptance/lib/html_acceptance.rb	  def validator(html, resource)

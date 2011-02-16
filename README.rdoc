@@ -1,6 +1,17 @@
 = html_acceptance
 
-Description goes here.
+HTLM Acceptance helps you track, fix, and come to terms with your HTML's validity, or lack thereof.  
+The idea is to take an html markup string associated with a particular path (file or URL),
+and validate it. HTML Acceptance is intended to be used in acceptance tests, test suites or rake tasks
+to alert you to changes in your html's validity so you can fix them, or barring that, review and accept
+any errors and warnings. 
+
+
+
+
+
+
+
 
 == Contributing to html_acceptance
  
@@ -11,6 +22,8 @@ Description goes here.
 * Commit and push until you are happy with your contribution
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+
 
 == Copyright
 

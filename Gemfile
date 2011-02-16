@@ -11,3 +11,14 @@ group :development do
   gem "jeweler", "~> 1.5.2"
   gem "rcov", ">= 0"
 end
+
+
+# Unix Rubies (OSX, Linux)  
+platform :ruby do
+  
+end
+
+# Windows Rubies (RubyInstaller)  
+platforms :mswin, :mingw do
+  
+end
