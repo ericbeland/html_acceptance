@@ -1,5 +1,3 @@
-require 'open3'
-
 # == HTML Acceptance
 # HTLM Acceptance helps you watch and come to terms with your HTML's validity, or lack thereof.  
 # The idea is to take an html markup string associated with a particular path (file or URL),
@@ -56,7 +54,3 @@ class HTMLAcceptance
 
   
 end
-
-
-
-
