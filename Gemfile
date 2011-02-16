@@ -12,6 +12,8 @@ group :development do
   gem "rcov", ">= 0"
 end
 
+gem "open3"
+
 
 # Unix Rubies (OSX, Linux)  
 platform :ruby do

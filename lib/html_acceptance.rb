@@ -2,7 +2,7 @@ require 'open3'
 
 # == HTML Acceptance
 # HTLM Acceptance helps you watch and come to terms with your HTML's validity, or lack thereof.  
-# The basic idea is to take an html markup string associated with a particular path (file or URL),
+# The idea is to take an html markup string associated with a particular path (file or URL),
 # and validate it. It is intended to be used in acceptance tests, test suites or a rake task
 # to alert you to changes in your html's validity so you can fix them, or barring that, review and accept
 # errors and warnings. 

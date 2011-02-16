@@ -1,17 +1,60 @@
-= html_acceptance
+= HTML Acceptance
 
 HTLM Acceptance helps you track, fix, and come to terms with your HTML's validity, or lack thereof.  
-The idea is to take an html markup string associated with a particular path (file or URL),
+The idea is to take an html markup string associated with a particular resource (file or URL),
 and validate it. HTML Acceptance is intended to be used in acceptance tests, test suites or rake tasks
 to alert you to changes in your html's validity so you can fix them, or barring that, review and accept
 any errors and warnings. 
 
 
+== Usage:
 
+    h=HTMLAcceptance.new('/tmp/validation')
+    v=h.validator("<html>foo", 'http://somesite.com/index.html')
+    
+    # Note: the second argument (resource) is just an identifier used to name our results files,
+    # and that no data is actually retrieved for you from the URL.
 
+    v.valid?
+    -> false
+    
+    v.exceptions
+    ->  line 1 column 1 - Warning: missing <!DOCTYPE> declaration
+    ->  line 1 column 9 - Warning: plain text isn't allowed in <head> elements
+    ->  line 1 column 9 - Warning: inserting missing 'title' element
+  
+    v.accept!
+    
+    v.valid
+    -> true
+    
+== Accepting Errors
+    
+    The HTML Acceptance gem stores data in the passed data_path. After a validation fails,
+    run the html_acceptance rake task (in the gem's lib/tasks) to update validation failures.
+    
+    When failures occur, data regarding the failure, the html involved, and the exception
+    return is stored within the data folder passed into HTMLAcceptance. To accept the failures/errors
+    just open the folder, and find the .exception.txt file for the resource and rename it with 
+    .accepted.txt.  Alternately, to review all failing tests, copy the html_acceptance rake task
+    and run it as follows:
+    
+    rake html_acceptance DATA_PATH='/yourproject/validations'
+    
+    Replace the data path with whatever folder you passed to HTMLAcceptance when you initially
+    ran the validations.
+    
+    
+   
+== NOTES
+    
+    This is untested on Windows as I don't have access to a Windows machine at the moment. 
+    It is (at least mostly) written so it could work on Windows. Pull requests in this area would
+    be welcomed.  
+                                   
+== Requirements
 
-
-
+    HTML Tidy needs to be either installed at /usr/bin/tidy or on the PATH.
 
 == Contributing to html_acceptance
  

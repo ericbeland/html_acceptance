@@ -1,4 +1,4 @@
-1297880139
+1297882079
 HTMLAcceptance	/Users/ebeland/src/html_acceptance/lib/html_acceptance.rb	class HTMLAcceptance
 bad_html	/Users/ebeland/src/html_acceptance/spec/html_acceptance_spec.rb	  def bad_html
 each_exception	/Users/ebeland/src/html_acceptance/lib/html_acceptance.rb	  def each_exception
