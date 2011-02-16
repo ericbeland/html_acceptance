@@ -1,5 +1,5 @@
 require 'rake'
-require 'html_acceptance'
+#require 'html_acceptance'
 
 desc 'Accept HTML validation exceptions results'
 task :html_acceptance do
