@@ -10,7 +10,7 @@ any errors and warnings.
 == Usage:
 
     h=HTMLAcceptance.new('/tmp/validation')
-    v=h.validator("<html>foo", 'http://somesite.com/index.html')
+    v=h.validator("<html>foo</html>", 'http://somesite.com/index.html')
     
     # Note: the second argument (resource) is just an identifier used to name our results files,
     # and that no data is actually retrieved for you from the URL.
@@ -25,8 +25,11 @@ any errors and warnings.
   
     v.accept!
     
-    v.valid
+    v.valid?
     -> true
+	
+	# Note that after the exceptions string has been accepted, the exceptions are still 
+	# available in v.exceptions even though valid? will return true.
     
 == Accepting Errors
     
