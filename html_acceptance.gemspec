@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{html_acceptance}
-  s.version = "0.1.4"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Eric Beland"]
-  s.date = %q{2011-02-16}
+  s.date = %q{2011-02-17}
   s.description = %q{HTML Acceptance lets you accept warnings/errors.  Less noisey validation will hopefully let you build html validation into your test suite, but break the rules if you must.}
   s.email = %q{ebeland@testomatix.com}
   s.extra_rdoc_files = [
