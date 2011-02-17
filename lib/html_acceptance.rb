@@ -5,8 +5,9 @@
 # to alert you to changes in your html's validity so you can fix them, or barring that, review and accept
 # errors and warnings. 
 
-# ==Paths
-# When calling the validation routine, a path, or URL is passed. 
+# ==Resource paths
+# When calling the validation routine, a path, or URL is passed. This is used internally to name 
+# the resulting validation output files.
 
 # NOTE: HTMLAcceptance never retreives html or reads in files *for* you. It doesn't read files, or call 
 # passed URL's. The purpose of passing a resource path is to give the test a name which saved exceptions 
@@ -21,16 +22,20 @@ require 'html_acceptance/html_acceptance_result'
 class HTMLAcceptance
   
   
-  # The exception_folder is where we store our output. options[:tidyopts], which defaults to "qi"
+  # The data_folder is where we store our output. options[:tidyopts], which defaults to "-qi"
   # can be used to override the command line options to html tidy.  On *nix, man tidy to see
-  # what else you might use for this string instead of just "-qi"
+  # what else you might use for this string instead of "-qi", however "-qi" is probably what 
+  # you want 95% of the time.
+  
+  # It may be useful to pass a subfolder in your project as the data_folder, so your
+  # html acceptance status and validation results are stored along with your source. 
   def initialize(data_folder, options={})
     @data_folder = data_folder
     @options=options 
   end
 
-  # for each stored exception, yield an html_acceptance object to allow the user to 
-  # accept the exception
+  # For each stored exception, yield an html_acceptance_result object to allow the user to 
+  # call .accept! on the exception if it is OK.  
   def each_exception
     Dir.chdir(@data_folder)
     Dir.glob("*.exceptions.txt").each do |file|
@@ -47,8 +52,9 @@ class HTMLAcceptance
   
   private
   
+  # take a url or filepath, trim and sanitize it for use as a filename
   def filenameize(path)
-    path.gsub!(/www.|^(http:\/\/|\/|C:\\\\)/, '')
+    path.gsub!(/www.|^(http:\/\/|\/|C:\\)/, '')
     path.gsub(/[^0-9A-Za-z.]/,'_')  
   end
 
