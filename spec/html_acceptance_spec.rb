@@ -63,27 +63,35 @@ describe "HtmlAcceptance" do
     result=@h.validator("<html></body></html>", "http://mycoolsite.com").valid?.should be_false    
   end
   
-  it "should let me pass a tidy option" do
-    @h=HTMLAcceptance.new('/tmp/validation', :tidy_opts=>"-e")
-    result=@h.validator("<html>foo", 'c:\mycoolapp\somesite.html')
-    result.exceptions.include?("were found!").should be_true
-    @h=HTMLAcceptance.new('/tmp/validation')
-    result=@h.validator("<html>foo", 'c:\mycoolapp\somesite.html')
-    result.exceptions.include?("were found!").should be_false  
+  
+  describe "when launching HTML Tidy" do
+  
+	  it "should let me pass different Tidy command line options" do
+		@h=HTMLAcceptance.new('/tmp/validation', :tidy_opts=>"-e")
+		result=@h.validator("<html>foo", 'c:\mycoolapp\somesite.html')
+		result.exceptions.include?("were found!").should be_true
+		@h=HTMLAcceptance.new('/tmp/validation')
+		result=@h.validator("<html>foo", 'c:\mycoolapp\somesite.html')
+		result.exceptions.include?("were found!").should be_false  
+	  end
+  
   end
   
+  describe "when walking exception results" do
   
-  it "should yeild exception results" do	
-    @h=HTMLAcceptance.new('/tmp/validation', :tidy_opts=>"-e")
-    result=@h.validator("<html>foo", 'c:\evencooler.com\somesite.html')  
-    had_exceptions=false
-    @h.each_exception do |e|
-      had_exceptions=true
-		  e.is_a?(HTMLAcceptanceResult).should be_true
-		  (e.resource.length > 0).should be_true
-		  (e.html.length > 0).should be_true
-	  end	
-    had_exceptions.should be_true
+	  it "should yield loaded exception results" do	
+		@h=HTMLAcceptance.new('/tmp/validation')
+		result=@h.validator("<html>foo", 'c:\evencooler.com\somesite.html')  
+		had_exceptions=false
+		@h.each_exception do |e|
+		  had_exceptions=true
+			  e.is_a?(HTMLAcceptanceResult).should be_true
+			  (e.resource.length > 0).should be_true
+			  (e.html.length > 0).should be_true
+		  end	
+		had_exceptions.should be_true
+	  end
+  
   end
   
   private
