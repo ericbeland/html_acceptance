@@ -72,7 +72,8 @@ class HTMLAcceptanceResult
   # if the errors change position in the file (up or down b/c you add or remove code), 
   # accepted exception strings will remain valid.
   def filter(str)
-    str.gsub(/line [0-9]+ column [0-9]+ -/, '')
+	str.gsub!(/line [0-9]+ column [0-9]+ - Warning: trimming empty <[a-zA-Z]+>/, '')  # the messages about empty are overzealous, and not invalid
+    str.gsub(/line [0-9]+ column [0-9]+ -/, '')	
    # /line [0-9]+ column [0-9]+ - / +  =~ "line 1 column 1 - Warning: missing <!DOCTYPE> declaration"
   end
       
