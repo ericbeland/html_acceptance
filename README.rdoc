@@ -36,10 +36,10 @@ any errors and warnings.
     When failures occur, data regarding the failure, the html involved, and the exception
     return is stored within the data folder passed into HTMLAcceptance. To accept the failures/errors
     just open the folder, and find the .exception.txt file for the resource and rename it with 
-    .accepted.txt.  Alternately, to review all failing tests, copy the html_acceptance rake task
-    and run it as follows:
+    .accepted.txt.  Alternately, to review all failing tests, copy the included html_acceptance 
+    rake task into your app and run it as follows:
     
-    rake html_acceptance DATA_PATH='/yourproject/validations'
+    rake html_acceptance[/tmp/validation]
     
     Replace the data path with whatever folder you passed to HTMLAcceptance when you initially
     ran the validations.
