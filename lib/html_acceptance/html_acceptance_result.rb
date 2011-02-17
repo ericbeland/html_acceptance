@@ -13,10 +13,10 @@ class HTMLAcceptanceResult
   end
 
   # takes a .url.txt and loads the data into this object
-  def self.load_from_file(file_root)
-    @resourcepath = File.open("#{file_root}.resource.txt", 'r').read
-    @html = File.open("#{file_root}.html.txt", 'r').read
-    @exceptions = File.open("#{file_root}.exceptions.txt").read
+  def self.load_from_files(datapath)
+    resource = File.open(data_path("#{data_path}.resource.txt"), 'r').read
+    html = File.open(data_path("#{data_path}.html.txt", 'r').read
+	HTMLAcceptanceResult.new(resource, html, datapath)
   end
   
   # Validates an html string using html tidy. If there are no warnings or exceptions, or 

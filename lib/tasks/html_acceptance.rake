@@ -1,15 +1,9 @@
-require 'rake'
-#require 'html_acceptance'
 
 desc 'Accept HTML validation exceptions results'
-task :html_acceptance do
-
-  unless ENV.include?("DATA_PATH")
-    raise "usage: rake html_acceptance DATA_PATH=foo" 
-  end
+task :html_accept, :data_path do  |t, args|
   
-  HTMLAcceptance.new(env['DATA_PATH']).each_exception do |result|
-      $stdout.puts "Validation Exceptions:\n #{result}" 
+  HTMLAcceptance.new(args.data_path).each_exception do |result|
+      $stdout.puts "Validation Exceptions:\n #{result.exceptions}" 
       $stdout.puts "Accept (y)es or (n)o"
       sin=$stdin.gets
       result.accept! if sin.first == 'y'
@@ -17,5 +11,3 @@ task :html_acceptance do
   end
 
 end
-
-
