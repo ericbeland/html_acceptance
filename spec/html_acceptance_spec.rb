@@ -2,13 +2,9 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "HtmlAcceptance" do
   
-  def tmp_path
-    is_windows=(RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
-    is_windows ? 'c:\temp\validation' : '/tmp/validation'
-  end
-  
   before(:each) do
-    FileUtils.mkdir '/tmp/validation'  if !File.exists?('/tmp/validation')
+    FileUtils.mkdir tmp_path if !File.exists?('/tmp/validation')
+    clean_dir(tmp_path)
     @h=HTMLAcceptance.new('/tmp/validation')    
   end
   
@@ -60,7 +56,7 @@ describe "HtmlAcceptance" do
     result=@h.validator(bad_html, "http://notmysite.com").valid?.should be_false
   end
   
-  it "should not pass different exception" do
+  it "should not pass a different non-accepted exception" do
     result=@h.validator(bad_html, "http://mycoolsite.com")
     result.accept!
     e1=result.exceptions
@@ -76,6 +72,20 @@ describe "HtmlAcceptance" do
     result.exceptions.include?("were found!").should be_false  
   end
   
+  
+  it "should yeild exception results" do	
+    @h=HTMLAcceptance.new('/tmp/validation', :tidy_opts=>"-e")
+    result=@h.validator("<html>foo", 'c:\evencooler.com\somesite.html')  
+    had_exceptions=false
+    @h.each_exception do |e|
+      had_exceptions=true
+		  e.is_a?(HTMLAcceptanceResult).should be_true
+		  (e.resource.length > 0).should be_true
+		  (e.html.length > 0).should be_true
+	  end	
+    had_exceptions.should be_true
+  end
+  
   private
   
   def bad_html
@@ -84,6 +94,17 @@ describe "HtmlAcceptance" do
   
   def good_html
     '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><title>the title</title></head><body><p>a paragraph</body></html>'
+  end
+  
+  def tmp_path
+    is_windows=(RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
+    is_windows ? 'c:\temp\validation' : '/tmp/validation'
+  end
+  
+  # clean our temp dir without killing it
+  def clean_dir(dir)
+    Dir.chdir(dir)
+    Dir.glob('*').each {|f| FileUtils.rm(f) }
   end
   
 end

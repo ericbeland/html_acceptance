@@ -34,7 +34,7 @@ class HTMLAcceptance
     @options=options 
   end
 
-  # For each stored exception, yield an html_acceptance_result object to allow the user to 
+  # For each stored exception, yield an HTMLAcceptanceResult object to allow the user to 
   # call .accept! on the exception if it is OK.  
   def each_exception
     Dir.chdir(@data_folder)
