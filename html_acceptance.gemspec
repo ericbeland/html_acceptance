@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{html_acceptance}
-  s.version = "0.1.7"
+  s.version = "0.1.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Eric Beland"]
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "lib/html_acceptance.rb",
     "lib/html_acceptance/html_acceptance_result.rb",
     "lib/tasks/html_acceptance.rake",
+    "samples/have_valid_html.rb",
     "spec/html_acceptance_spec.rb",
     "spec/spec_helper.rb"
   ]
