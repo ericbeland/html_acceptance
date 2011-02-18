@@ -43,7 +43,7 @@ class HTMLAcceptance
   def each_exception
     Dir.chdir(@data_folder)
     Dir.glob("*.exceptions.txt").each do |file|
-      if File.open(file, 'r').read != ''
+      if File.open(File.join(@data_folder, file), 'r').read != ''
         yield HTMLAcceptanceResult.load_from_files(file.gsub('.exceptions.txt',''))
       end
     end
