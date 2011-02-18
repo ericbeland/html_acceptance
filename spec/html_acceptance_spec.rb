@@ -4,7 +4,7 @@ describe "HtmlAcceptance" do
   
   before(:each) do
     FileUtils.mkdir tmp_path if !File.exists?('/tmp/validation')
-    clean_dir(tmp_path)
+#    clean_dir(tmp_path)
     @h=HTMLAcceptance.new('/tmp/validation')    
   end
   
