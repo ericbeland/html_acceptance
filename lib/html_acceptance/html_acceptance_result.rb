@@ -77,14 +77,14 @@ class HTMLAcceptanceResult
    # /line [0-9]+ column [0-9]+ - / +  =~ "line 1 column 1 - Warning: missing <!DOCTYPE> declaration"
   end
       
-  def validate            
-    results=''
-    Open3.popen3(tidy_command) do |stdin, stdout, stderr, wait_thr|    
-      stdin.puts @html
-      stdin.close
-      results=stderr.read
-    end
-    results
+  def validate
+    stdin, stdout, stderr = Open3.popen3(tidy_command)
+    stdin.puts @html
+    stdin.close
+    stdout.close
+    result=stderr.read
+    stderr.close
+    result
   end
   
 end
