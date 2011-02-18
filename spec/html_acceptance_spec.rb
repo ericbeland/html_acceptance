@@ -63,6 +63,14 @@ describe "HtmlAcceptance" do
     result=@h.validator("<html></body></html>", "http://mycoolsite.com").valid?.should be_false    
   end
   
+  it "should ignore proprietary tags when ignore_proprietary is passed" do
+	  html_with_proprietary=good_html.gsub('<body>','<body><textarea wrap="true" spellcheck="true">hi</textarea>')	
+	  result=@h.validator(html_with_proprietary, "http://mycrosoft.com")
+	  result.valid?.should be_false		
+	  @h=HTMLAcceptance.new('/tmp/validation', :ignore_proprietary=>true)
+	  result=@h.validator(html_with_proprietary, "http://mycrosoft.com")
+	  result.valid?.should be_true
+  end
   
   describe "when launching HTML Tidy" do
   
@@ -94,6 +102,8 @@ describe "HtmlAcceptance" do
   
   end
   
+  
+  
   private
   
   def bad_html
@@ -101,9 +111,9 @@ describe "HtmlAcceptance" do
   end
   
   def good_html
-    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><title>the title</title></head><body><p>a paragraph</body></html>'
+    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><title>the title</title></head><body><p>a paragraph</p></body></html>'
   end
-  
+    
   def tmp_path
     is_windows=(RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
     is_windows ? 'c:\temp\validation' : '/tmp/validation'

@@ -27,11 +27,15 @@ class HTMLAcceptance
   # what else you might use for this string instead of "-qi", however "-qi" is probably what 
   # you want 95% of the time.
   
+  # You may also pass :ignore_proprietary=>true as an option to suppress messages like: 
+  #  line 1 column 176 - Warning: <textarea> proprietary attribute "wrap"
+  #  line 1 column 176 - Warning: <textarea> proprietary attribute "spellcheck"
+  
   # It may be useful to pass a subfolder in your project as the data_folder, so your
   # html acceptance status and validation results are stored along with your source. 
   def initialize(data_folder, options={})
     @data_folder = data_folder
-    @options=options 
+    @options = options
   end
 
   # For each stored exception, yield an HTMLAcceptanceResult object to allow the user to 

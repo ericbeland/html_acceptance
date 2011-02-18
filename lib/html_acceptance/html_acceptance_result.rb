@@ -10,6 +10,7 @@ class HTMLAcceptanceResult
     @exceptions = ''
     @datapath=datapath
     @tidyopts = options[:tidy_opts] || "-qi"
+	  @ignore_proprietary = options[:ignore_proprietary] 
     valid?
   end
 
@@ -73,6 +74,7 @@ class HTMLAcceptanceResult
   # accepted exception strings will remain valid.
   def filter(str)
 	  str.gsub!(/^line.*trimming empty.*\n/, '')  # the messages about empty are overzealous, and not invalid
+	  str.gsub!(/^line.*proprietary.*\n/, '') if @ignore_proprietary # if you use IE only attributes like wrap, or spellcheck or things not in standard	  
     str.gsub(/line [0-9]+ column [0-9]+ -/, '')	
    # /line [0-9]+ column [0-9]+ - / +  =~ "line 1 column 1 - Warning: missing <!DOCTYPE> declaration"
   end
