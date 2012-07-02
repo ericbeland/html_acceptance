@@ -33,9 +33,9 @@ class HTMLAcceptance
   
   # It may be useful to pass a subfolder in your project as the data_folder, so your
   # html acceptance status and validation results are stored along with your source. 
-  def initialize(data_folder, options={})
-    @data_folder = data_folder
-    @options = options
+  def initialize(data_folder, options = {})
+    @data_folder  = data_folder
+    @options      = options
   end
 
   # For each stored exception, yield an HTMLAcceptanceResult object to allow the user to 
@@ -50,17 +50,16 @@ class HTMLAcceptance
   end
   
   def validator(html, resource)
-    datapath=File.join(@data_folder, filenameize(resource))
+    datapath = File.join(@data_folder, filenameize(resource))
     HTMLAcceptanceResult.new(resource, html, datapath, @options)
   end
   
   private
   
-  # take a url or filepath, trim and sanitize it for use as a filename
+  # Takes a url or filepath qne trims and sanitizes it for use as a filename.
   def filenameize(path)
     path.gsub!(/www.|^(http:\/\/|\/|C:\\)/, '')
-    path.gsub(/[^0-9A-Za-z.]/,'_')  
+    path.gsub(/[^0-9A-Za-z.]/, '_')  
   end
-
   
 end

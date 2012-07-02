@@ -5,19 +5,19 @@ class HTMLAcceptanceResult
   
   # valid options[:tidy_opts]
   def initialize(resource, html, datapath, options={})
-    @resource = resource
-    @html = html
-    @exceptions = ''
-    @datapath=datapath
-    @tidyopts = options[:tidy_opts] || "-qi"
+    @resource           = resource
+    @html               = html
+    @exceptions         = ''
+    @datapath           = datapath
+    @tidyopts           = options[:tidy_opts] || "-qi"
 	  @ignore_proprietary = options[:ignore_proprietary] 
     valid?
   end
 
   # takes a .url and loads the data into this object
   def self.load_from_files(filepath)
-    resource = File.open("#{filepath}.resource.txt", 'r').read
-    html = File.open("#{filepath}.html.txt", 'r').read
+    resource  = File.open("#{filepath}.resource.txt", 'r').read
+    html      = File.open("#{filepath}.html.txt", 'r').read
 	  HTMLAcceptanceResult.new(resource, html, filepath)
   end
   
@@ -47,7 +47,7 @@ class HTMLAcceptanceResult
   # for me by default.
   def tidy_command
     is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
-    bin=(is_windows or !File.exists?("/usr/bin/tidy")) ? 'tidy' : '/usr/bin/tidy'
+    bin = (is_windows or !File.exists?("/usr/bin/tidy")) ? 'tidy' : '/usr/bin/tidy'
     "#{bin} #{@tidyopts}"
   end
     
@@ -57,9 +57,9 @@ class HTMLAcceptanceResult
   end
 
   def save_html_and_exceptions
-    File.open(data_path("html"), 'w') {|f| f.write(@html) }
-    File.open(data_path("resource"), 'w') {|f| f.write(@resource) } 
-	File.open(data_path("exceptions"), 'w') {|f| f.write(@exceptions) }       
+    File.open(data_path("html"), 'w')       {|f| f.write(@html) }
+    File.open(data_path("resource"), 'w')   {|f| f.write(@resource) } 
+    File.open(data_path("exceptions"), 'w') {|f| f.write(@exceptions) }       
   end     
 
     # have we previously accepted this exact string for this path?
@@ -84,7 +84,7 @@ class HTMLAcceptanceResult
     stdin.puts @html
     stdin.close
     stdout.close
-    result=stderr.read
+    result = stderr.read
     stderr.close
     result
   end

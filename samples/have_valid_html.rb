@@ -11,9 +11,9 @@ class HaveValidHTML
   # page.should have_valid_html
   
   def matches?(page)
-    path=File.join(File.dirname(__FILE__), '../validation' )
-    h=HTMLAcceptance.new(path)
-    @v=h.validator(page.body, page.current_url)
+    path  = File.join(File.dirname(__FILE__), '../validation' )
+    h     = HTMLAcceptance.new(path)
+    @v    = h.validator(page.body, page.current_url)
     @v.valid?
   end
   
